@@ -1,0 +1,9 @@
+# syntax=docker/dockerfile:1.4
+
+FROM alpine as temp
+COPY test-file /
+RUN chmod 777 /test-file
+
+FROM alpine
+COPY --from=temp /test-file /
+RUN sleep 1
